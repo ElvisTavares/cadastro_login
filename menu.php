@@ -3,12 +3,14 @@
 session_start();
 if (isset($_SESSION['nome_sessao'])) {
 	# code...
-	echo "ola".$_SESSION['nome_sessao']
+	echo "ola ".$_SESSION['nome_sessao'];
 }
 
 ?>
 
+
 <div>
+    <br><br>
 	Menu<br>
 
 	</div>

@@ -7,8 +7,19 @@
  */
 
 include('config.php');
+include('menu.php');
 
-$sql = mysqli_query($conexao, "SELECT * FROM tb_usuario WHERE email='".$_POST['email']."' AND senha='".$_POST['senha']."' LIMIT 1") or die("Erro");
+
+function anti_sql_injection($string){
+    include('config.php');
+    $string = stripslashes($string);
+    $string = strip_tags($string);
+    $string = mysqli_real_escape_string($conexao, $string);
+    return $string;
+
+}
+
+$sql = mysqli_query($conexao, "SELECT * FROM tb_usuario WHERE email='".anti_sql_injection($_POST['email'])."' AND senha='".anti_sql_injection($_POST['senha'])."' LIMIT 1") or die("Erro");
 
 $linhas = mysqli_num_rows($sql);
 
